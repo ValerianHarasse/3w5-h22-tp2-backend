@@ -1,0 +1,39 @@
+version: "2.1"
+orbs:
+  eb: circleci/aws-elastic-beanstalk@2.0.1
+  node: circleci/node@5.0.0
+jobs:
+  checkoutAndTest:
+    steps:
+      - checkout
+      - node/test
+  integrateFrontend:
+    steps:
+      - run:
+          command: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-backend.git
+          command: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-frontend.git
+          command: cd 3w5-h22-tp2-frontend && npm i
+          command: npm run build
+          command: cd 3w5-h22-tp2-backend && mkdir public
+          command: cp -rT 3w5-h22-tp2-frontend/build 3w5-h22-tp2-backend/public
+      - persist_to_workspace:
+          root: .
+            paths:
+              - 3w5-h22-tp2-backend-test1
+  deploy:
+    steps:
+      - run:
+        command: cd 3w5-h22-tp2-backend && ls -Rl
+      - attach_workspace:
+          at: .
+workflows:
+  elastic-beanstalk-workflow:
+    jobs:
+      - checkoutAndTest
+      - integrateFrontend:
+          requires: 
+            - checkoutAndTest
+      - deploy:
+          requires:
+            - integrateFrontend
+
