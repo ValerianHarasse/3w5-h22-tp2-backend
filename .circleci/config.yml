@@ -18,8 +18,8 @@ jobs:
           command: cp -rT 3w5-h22-tp2-frontend/build 3w5-h22-tp2-backend/public
       - persist_to_workspace:
           root: .
-            paths:
-              - 3w5-h22-tp2-backend-test1
+          paths:
+           - 3w5-h22-tp2-backend-test1 
   deploy:
     steps:
       - run:
