@@ -11,8 +11,7 @@ jobs:
     steps:
       - run: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-backend.git
       - run: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-frontend.git
-      - run:
-          command: cd 3w5-h22-tp2-frontend && npm i
+      - run: cd 3w5-h22-tp2-frontend && npm i
           command: npm run build
           command: cd 3w5-h22-tp2-backend && mkdir public
           command: cp -rT 3w5-h22-tp2-frontend/build 3w5-h22-tp2-backend/public
