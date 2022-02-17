@@ -9,9 +9,9 @@ jobs:
       - node/test
   integrateFrontend:
     steps:
+      - run: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-backend.git
+      - run: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-frontend.git
       - run:
-          command: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-backend.git
-          command: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-frontend.git
           command: cd 3w5-h22-tp2-frontend && npm i
           command: npm run build
           command: cd 3w5-h22-tp2-backend && mkdir public
