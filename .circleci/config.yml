@@ -4,10 +4,12 @@ orbs:
   node: circleci/node@5.0.0
 jobs:
   checkoutAndTest:
+    machine: true
     steps:
       - checkout
       - node/test
   integrateFrontend:
+    machine: true
     steps:
       - run: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-backend.git
       - run: git clone https://github.com/ValerianHarasse/3w5-h22-tp2-frontend.git
@@ -20,12 +22,13 @@ jobs:
           paths:
            - 3w5-h22-tp2-backend-test1 
   deploy:
+    machine: true
     steps:
       - run: cd 3w5-h22-tp2-backend && ls -Rl
       - attach_workspace:
           at: .
 workflows:
-  elastic-beanstalk-workflow:
+  build:
     jobs:
       - checkoutAndTest
       - integrateFrontend:
