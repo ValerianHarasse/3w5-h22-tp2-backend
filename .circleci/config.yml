@@ -1,7 +1,5 @@
 version: "2.1"
-orbs:
-  eb: circleci/aws-elastic-beanstalk@2.0.1
-  node: circleci/node@5.0.0
+
 jobs:
   checkoutAndTest:
     machine: true
@@ -22,7 +20,7 @@ jobs:
     steps:
       - run: cd 3w5-h22-tp2-backend && ls -Rl
 workflows:
-  workflow:
+  elastic-beanstalk-workflow:
     jobs:
       - checkoutAndTest
       - integrateFrontend:
