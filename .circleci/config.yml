@@ -22,6 +22,7 @@ jobs:
     steps:
       - run: cd 3w5-h22-tp2-backend && ls -Rl
 workflows:
+  version: 2
   elastic-beanstalk-workflow:
     jobs:
       - checkoutAndTest
