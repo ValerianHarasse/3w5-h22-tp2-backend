@@ -17,18 +17,13 @@ jobs:
       - run: npm run build
       - run: cd 3w5-h22-tp2-backend && mkdir public
       - run: cp -rT 3w5-h22-tp2-frontend/build 3w5-h22-tp2-backend/public
-      - persist_to_workspace:
-          root: .
-          paths:
-           - 3w5-h22-tp2-backend-test1 
   deploy:
     machine: true
     steps:
       - run: cd 3w5-h22-tp2-backend && ls -Rl
-      - attach_workspace:
-          at: .
+      
 workflows:
-  build:
+  elastic-beanstalk-workflow:
     jobs:
       - checkoutAndTest
       - integrateFrontend:
