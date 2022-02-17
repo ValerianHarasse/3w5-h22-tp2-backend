@@ -21,9 +21,8 @@ jobs:
     machine: true
     steps:
       - run: cd 3w5-h22-tp2-backend && ls -Rl
-      
 workflows:
-  elastic-beanstalk-workflow:
+  workflow:
     jobs:
       - checkoutAndTest
       - integrateFrontend:
